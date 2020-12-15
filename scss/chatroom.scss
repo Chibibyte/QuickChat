@@ -1,0 +1,194 @@
+@import 'main';
+@import 'extra';
+
+body{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6),
+                       rgba(0, 0, 0, 0.6)),url('/res/quickChatBg1.jpg');
+}
+
+.formWrapper{
+    display:flex;
+    flex-direction: column;
+    width:100%;
+    height:100%;
+    & > *:not(:first-child){
+        margin-top: 1rem;
+    
+    }
+
+    #roomHeader{
+        display:flex;
+        justify-content: flex-start;
+        align-items: flex-end;
+        .headerTitles{
+            display:flex;
+            align-items: flex-end;
+            #roomTitle{
+                font-size: 1.5rem;
+            }
+            #roomtimer{
+                font-size: 1.2rem;
+                margin-left:2rem;
+                &.roomtimer-roomclosing{
+                    color: red;
+                }
+                &.roomtimer-roomclosed{
+                    color: gray;
+                    &:after{
+                        content:" Room closed"
+                    }
+                }
+            }
+        }
+        #username-input{
+            background-color: orange;
+            padding:0.4;
+            margin-left: auto;
+        }
+    }
+
+    #chatWindow{
+        position: relative;
+        width: 100%;
+        height: auto;
+        background:linen;
+        flex: 1 0 50%;
+        padding: 1rem;
+        overflow: scroll;
+        overflow-x: hidden;
+        display:flex;
+        flex-direction: column;
+        border: 3px solid #333;
+        box-shadow: 0 0 0 3px white;
+        border-radius: 8px;
+
+        .msgContainer{
+            display:flex;
+            flex-direction: column;
+            border-radius: 8px;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px #c8c3c3 solid;
+            opacity: 0;
+            animation: msgAppear 1s forwards;
+            max-width: 100%;
+            box-shadow: 1px 1px 0px black;
+
+            p{
+                display: inline-block;
+                overflow-wrap: break-word;
+            }
+
+            &.msgContainer-left{
+                background: $secColor;
+                border-top-left-radius: 0;
+                margin-right: auto;
+            }
+
+            &.msgContainer-right{
+                background-color: white;
+                border-top-right-radius: 0;
+                margin-left: auto;
+            }
+            
+
+            .nameP{
+                font-size: smaller;
+                color:blue;
+            }
+
+            .msgP{
+
+            }
+        }
+    }
+
+    input, textarea{
+        padding: 0.5rem;
+        border-radius: 8px;
+    }
+
+    .inputContainer{
+        display:flex;
+        textarea#msg-input{
+            resize: none;
+            flex:auto;
+        }
+
+        #sendButton{
+            width: 3rem;
+            height: 3rem;
+            margin-left:1rem;
+        }
+    }
+}
+
+@keyframes msgAppear{
+    0%{opacity: 0;}
+    100%{opacity: 100;}
+}
+
+
+@include mediaSm{
+    .formWrapper{
+        #roomHeader{
+            .headerTitles{
+                #roomTitle{
+                    font-size: 1.2rem;
+                }
+                #roomtimer{
+                    font-size: 1rem;
+                }
+            }
+        }
+        #chatWindow{
+            .msgContainer{
+                padding: 0.2rem 0.3rem;
+            }
+        }
+        input, textarea{
+            padding: 0.3rem;
+            width: 40%;
+        }
+    }
+}
+
+@include mediaSmPortrait{
+    .formWrapper{
+        #roomHeader{
+            .headerTitles{
+                flex-direction: column;
+                align-items: flex-start;
+                #roomtimer{
+                    margin-left:0;
+                }
+            }
+        }
+    }
+}
+
+@include mediaMd{
+    background-image: none;
+    background:red;
+    .formWrapper{
+        #roomHeader{
+            .headerTitles{
+                flex-direction: row;
+                #roomtimer{
+                    margin-left:2rem;
+                }
+            }
+        }
+    }
+}
+
+@include mediaXL{
+    .formWrapper{
+        .inputContainer{
+            #sendButton{
+                width: 4rem;
+                height: 4rem;
+            }
+        }
+    }
+}

@@ -1,0 +1,213 @@
+$primColor: green;
+$secColor: green;
+$info-color: #1a73e8;
+
+// Media query mixins
+@mixin mediaSize($width, $minMax,$orientation:both) {
+    @debug width $width;
+    @debug minMax $minMax;
+    @debug orientation $orientation;
+    $wOrH:width;
+    @if $orientation == landscape{
+        $wOrH:height;
+    }
+    $query: "screen and (#{$minMax}-#{$wOrH}: #{$width}px)";
+    @if $orientation != both{
+        $query: "#{$query} and (orientation: #{$orientation})";
+    }
+    @media #{$query}{
+        @content;
+    }
+
+
+}
+
+
+$screenWidth0: 640;
+$screenHeight0: 1137;
+$screenWidth1: 750;
+$screenHeight1: 1334;
+$screenWidth2: 1080;
+$screenHeight2: 1920;
+
+@mixin mediaSm {@include mediaSize($screenWidth0, max, both){@content;}}
+@mixin mediaMd {@include mediaSize($screenWidth0+1, min, both){@content;}}
+@mixin mediaLg {@include mediaSize($screenWidth1+1, min, both){@content;}}
+@mixin mediaXL {@include mediaSize($screenWidth2+1, min, both){@content;}}
+
+@mixin mediaSmPortrait {@include mediaSize($screenWidth0, max, portrait){@content;}}
+@mixin mediaMdPortrait {@include mediaSize($screenWidth0+1, min, portrait){@content;}}
+@mixin mediaLgPortrait {@include mediaSize($screenWidth1+1, min, portrait){@content;}}
+@mixin mediaXLPortrait {@include mediaSize($screenWidth2+1, min, portrait){@content;}}
+
+@mixin mediaSmLandscape {@include mediaSize($screenWidth0, max, landscape){@content;}}
+@mixin mediaMdLandscape {@include mediaSize($screenWidth0+1, min, landscape){@content;}}
+@mixin mediaLgLandscape {@include mediaSize($screenWidth1+1, min, landscape){@content;}}
+@mixin mediaXLLandscape {@include mediaSize($screenWidth2+1, min, landscape){@content;}}
+
+html{
+    *{
+        box-sizing: border-box;
+        margin:0;
+        padding:0;
+    }
+}
+
+body{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image:url('/res/quickChatBg1.jpg');
+    width:100vw;
+    height:100vh;
+    padding: 1rem;
+
+    h1,h2,h3,h4,h5,h6{
+        text-shadow: -2px 1px 3px black;
+        color: wheat;
+        text-transform: capitalize;
+        text-align: center;
+    }
+}
+
+.mainSection{
+    .formWrapper{
+        position: relative;
+        margin: 2rem 0;
+        border: gray 1px solid;
+        border-radius: 8px;
+        padding: 1rem;
+        overflow: hidden;
+        .toast{
+            right:3rem;
+        }
+        .form{
+            .formLine{
+                margin-top:0.5rem;
+
+                .formLine-ButtonInput{
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        
+                    input, button{
+                        display: inline-block;
+                    }
+                    input{
+                        width:84%;
+                    }
+                    button{
+                        width:2.5rem;
+                        margin-top: 0;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                }
+
+                .formLine-title{
+                    color: wheat;
+                    text-shadow: 1px 1px 0 black;
+
+                }
+
+                p{
+                    margin-bottom:0.2rem;
+                    &::after{
+                        content:":";
+                    }
+                }
+            }
+
+            input{
+                width: 100%;
+                color:black;
+                font-style: italic;
+            }
+            button{
+                width: 100%;
+                margin-top:2rem;
+                height: 2.1rem;
+            }
+
+        }
+    }
+}
+
+button{
+    color:white;
+    background-color: $info-color;
+    border: 1px solid #ffffff4f;
+    border-radius: 4px;
+
+    &:disabled{
+        background: #97979769;
+    }
+
+    &:hover,&:focus{
+        background-color: lighten($info-color, 5%);
+    }
+
+    &:active,&:focus{
+        background-color: darken($info-color, 5%);
+        box-shadow: 0 0 1px 1px gray inset;
+        transform: scale(0.95);
+    }
+}
+
+.note{
+    color: lighten($info-color, 12%);
+    font-size: 0.8rem;
+    text-decoration: underline;
+    text-shadow: 1px 1px 0px black;
+    margin-top: 1rem;
+}
+
+.modalWrapper{
+    position: fixed;
+    top:0;
+    left:0;
+    z-index: 2;
+    width:100vw;
+    height:100vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(white, 0.5);
+    .modal{
+        padding:1rem;
+        background:$info-color;
+        width:80%;
+        height:80%;
+        border-radius: 8px;
+        border: 1px solid white;
+        color:white;
+
+        .confirmButtonWrapper{
+            width:100%;
+            height: 20%;
+            text-align: center;
+            .confirmButton{
+                width: 4rem;
+                height: 4rem;
+                border-radius: 50%;
+                font-size: large;
+            }
+        }
+        
+        h1, h2, h3, h4, h5, h6{
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        p{
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+    }
+}
+
+.hidden{
+    display:none;
+}

@@ -1,0 +1,42 @@
+.toast{
+    position: absolute;
+    background:orange;
+    border: 2px solid rgb(124, 52, 5);
+    padding: 0.5rem;
+    border-radius: 8px;
+
+    @mixin dirClasses($dir){
+        $toasterDepth: -0.5rem;
+        &.toast-#{$dir}{
+            #{$dir}: $toasterDepth;
+
+            @keyframes goldenBrown-#{$dir} {
+                0% {
+                    transform: scale(0);
+                }
+                10%{
+                    transform: scale(1);
+                }
+                90%{
+                    transform: scale(1);
+                }
+                100%{
+                    transform: scale(0);
+                }
+            }
+
+            animation: goldenBrown-#{$dir} 2s linear forwards;
+        }
+    }
+    @include dirClasses(top);
+    @include dirClasses(bottom);
+    @include dirClasses(left);
+    @include dirClasses(right);
+
+    p{
+        margin: 0;
+        padding: 0;
+        text-transform: capitalize;
+        text-align: center;
+    }
+}

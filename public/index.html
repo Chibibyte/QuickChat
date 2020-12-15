@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/index.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script type="module" src="/js/logic/index.js"></script>
+    <title>QuickChat</title>
+</head>
+
+<body>
+    <div id="infoModal" class="modalWrapper hidden">
+        <div class="modal">
+            <h3>Welcome to QuickChat</h3>
+            <p>Create a quick little chatroom for you and your friends!</p>
+            <p>Simply fill out the form and hit 'Create'</p>
+            <p>Send the created link (and the password) to your friends and start chatting</p>
+            <p>Have fun! (optional)</p>
+            <div class="confirmButtonWrapper">
+                <button class="confirmButton">OK</button>
+            </div>
+        </div>
+    </div>
+    <div class="mainSection">
+        <div class="helpButtonWrapper">
+            <button class="helpButton">
+                <span>?</span>
+            </button>
+        </div>
+        <div class="indexTitles">
+            <h1 id='mainTitle'>QuickChat</h1>
+            <h3 id='secondTitle'>Quick little chatroom creator</h3>
+        </div>
+        <div class="formWrapper">
+            <form class="form" id="form" action="/createChatroom" method="POST">
+                <div class="formLines">
+                    <h2>Create your chatroom</h2>
+                    <div class="formLine">
+                        <p class='formLine-title'>Name</p>
+                        <div>
+                            <input type="text" name="name" placeHolder="name of chatroom" id="nameInput">
+                        </div>
+                    </div>
+                    <div class="formLine">
+                        <p class='formLine-title'>Roomkey</p>
+                        <div class="formLine-ButtonInput">
+                            <input type="password" name="password" placeHolder="password for your chatroom..."
+                                id="passwordInput">
+                            <button type="button" class="showButton"><i class="material-icons"
+                                    title="Show password">visibility</i></button>
+                        </div>
+
+                    </div>
+                    <div class="formLine">
+                        <p class='formLine-title'>Repeat Roomkey</p>
+                        <div class="formLine-ButtonInput">
+                            <input type="password" name="password2" placeHolder="password for your chatroom...again!"
+                                id="password2Input">
+                            <button type="button" class="showButton"><i class="material-icons"
+                                    title="Show password">visibility</i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="createButtonWrapper">
+                    <button type="submit" id="createButton">Create</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="roomLinkWrapper">
+            <div class="roomLinkBox">
+                <h2>Link to your Chatroom</h2>
+                <div class="linkInputField">
+                    <input type="url" id="roomLinkInput"
+                        placeholder="and here is where my roomlink would be... IF I HAD ONE!" readonly>
+                    <div class="linkbuttons">
+                        <button disabled id="copyButton"><i class="material-icons"
+                                title="Copy to Clipboard">content_copy</i></button>
+                        <button disabled id="openButton"><i class="material-icons"
+                                title="Open in new tab">link</i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

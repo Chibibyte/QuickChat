@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/chatroom.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="module" src="/js/logic/chatroom.js"></script>
+    <title>QuickChat-Room: </title>
+</head>
+
+<body>
+    <div class="formWrapper">
+        <div id="roomHeader">
+            <div class="headerTitles">
+                <h2 id="roomTitle">roomTitle</h2>
+                <h3 id="roomtimer">--:--</h3>
+            </div>
+            <input type="text" id="username-input" placeHolder="your name...">
+        </div>
+        <div id="chatWindow">
+
+        </div>
+        <div class="inputContainer">
+            <textarea id="msg-input" placeHolder="message...(ctrl + enter to send)"></textarea>
+            <button id="sendButton">Send</button>
+        </div>
+    </div>
+</body>
+
+</html>
